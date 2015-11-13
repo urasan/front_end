@@ -1,0 +1,39 @@
+{
+  "name": "CHANGE THIS : Extension boilerplate",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "This extension was created with the awesome extensionizr.com",
+  "homepage_url": "http://extensionizr.com",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "default_locale": "en",
+  "background": {
+    "page": "dest/bg/background.html",
+    "persistent": true
+  },
+  "page_action": {
+    "default_icon": "icons/icon19.png",
+    "default_title": "page action demo",
+    "default_popup": "dest/page_action/page_action.html"
+  },
+  "content_scripts": [
+    {
+      "js" :[
+        "js/jquery/jquery.js",
+        "js/wait_for_element.js",
+        "dest/content_script/hello.js", // スクリプトファイル名
+        "dest/content_script/app.js"
+      ],
+      "matches": [
+        "https://www.yammer.com/*"
+      ],
+      "run_at": "document_end" // スクリプト実行タイミング
+    }
+  ],
+  "permissions": [
+    "https://www.yammer.com/*"
+  ]
+}

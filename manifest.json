@@ -24,7 +24,6 @@
       "js" :[
         "js/jquery/jquery.js",
         "js/wait_for_element.js",
-        "dest/content_script/hello.js", // スクリプトファイル名
         "dest/content_script/app.js"
       ],
       "matches": [
@@ -34,6 +33,6 @@
     }
   ],
   "permissions": [
-    "https://www.yammer.com/*"
+    "https://www.yammer.com/"
   ]
 }

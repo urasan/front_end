@@ -1,19 +1,9 @@
 import React from 'react';
-import request from 'superagent';
+import ApiClient from './api_client';
 
 export default class DislikeList extends React.Component {
   componentDidMount() {
-    new Promise((resolve, reject) => {
-      request
-        .get(this.props.url)
-        .end(function (err, res) {
-          if (res.status === 404) {
-            reject();
-          } else {
-            resolve(JSON.parse(res.text));
-          }
-        });
-    }).then((dislike) => {
+    ApiClient.fetchDislikes(this.props.threadId, this.props.messageId).then((dislike) => {
       this.setState({dislikes: dislike});
     });
   }
@@ -23,11 +13,13 @@ export default class DislikeList extends React.Component {
       return <span>loading...</span>
     } else {
       return (
-        <ul className="dislike-list yj-conversation--quick-links yj-quick-links-list yj-clearfix">
-          {this.state.dislikes.map(function(dislike, i) {
-            return <li key={i} dangerouslySetInnerHTML={{__html: dislike.user_id}}></li>;
-          })}
-        </ul>
+        <p className="yj-message-likes yj-liked-by yj-thread-starter-likes yj-message-list-item--likes">
+          <span className="yj-likes-text yj-message-likes--text">
+            {this.state.dislikes.map(function(dislike, i) {
+              return <span className="yj-hovercard-link--name" key={i} dangerouslySetInnerHTML={{__html: dislike.user_id}}></span>
+            })}
+          </span>
+        </p>
       )
     }
   }

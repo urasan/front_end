@@ -1,10 +1,20 @@
 import React from "react";
-import request from 'superagent';
+import ApiClient from './api_client';
+import share from './share'
 
 export default class Dislike extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {disliked: false};
+  }
+
+  componentDidMount() {
+    ApiClient.fetchDislikes(this.props.threadId, this.props.messageId)
+  }
+
   render() {
     return (
-      <a onClick={this.onClick} role="button" href="javascript://" title="like this message" className="yj-message-list-item--action-list-link">
+      <a onClick={this.onClick.bind(this)} role="button" href="javascript://" title="like this message" className="yj-message-list-item--action-list-link">
         <span className="yj-message-list-item--action-list-icon yamicon yamicon-regular yamicon-rd_like"></span>
         <span className="yj-message-list-item--action-list-label" aria-hidden="true">{this.label()}</span>
         <span className="yj-message-list-item--action-list-acc yj-acc-hidden"> dislike this message</span>
@@ -12,26 +22,15 @@ export default class Dislike extends React.Component {
     )
   }
 
-  onClick(evt) {
-    if (!this.props.disliked) {
-      // TODO dislike を登録
-      new Promise(function (resolve, reject) {
-        request
-          .get('https://api.twitter.com/1.1/search/tweets.json?q=twitterapi')
-          .end(function (res) {
-            if (res.status === 404) {
-              reject();
-            } else {
-              resolve(JSON.parse(res.text));
-            }
-          });
-      }).then(function(dislike) {
-        console.log('>>>>>>>>>>');
-        console.log(dislike);
+  onClick() {
+    //if (!this.props.disliked) {
+    console.log(`${this.props.threadId} ${this.props.messageId}`);
+      ApiClient.dislike(this.props.threadId, this.props.messageId, share.userId).then((dislike) => {
+        console.log(`>>> ok ${dislike}`);
       });
-    } else {
-      // TODO dislike を削除
-    }
+    //} else {
+    //  // TODO dislike を削除
+    //}
   }
 
   label() {

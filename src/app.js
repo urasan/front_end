@@ -21,7 +21,7 @@ function setSidebar() {
   sidebar.append(temp);
 }
 
-function setDislike(element) {
+function setDislike(element, userId) {
   let actions = $(element);
   let container = $('<li class="yj-message-list-item--action-list-item yj-message-action-list-item yj-dislike-list-item">');
   actions.append(container);
@@ -33,7 +33,7 @@ function setDislike(element) {
   actions.parent().append(dislikeListContainer);
 
   ReactDOM.render(
-    <Dislike threadId={threadId} messageId={messageId} userId={share.userId}/>,
+    <Dislike threadId={threadId} messageId={messageId} userId={userId}/>,
     dislikeListContainer[0]
   );
 }
@@ -52,7 +52,7 @@ $(function() {
           if (typeof addedNode.querySelectorAll === "function") {
             let nodes = addedNode.querySelectorAll(selector);
             if (nodes) {
-              Array.from(nodes).forEach((node) => setDislike(node));
+              Array.from(nodes).forEach((node) => setDislike(node, share.userId));
             }
           }
         }

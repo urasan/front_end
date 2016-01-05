@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from 'react-dom';
 import request from 'superagent';
-import Dislike from './dislike';
+import DislikeButton from './dislike_button';
 import DislikeList from './dislike_list'
 import share from './share'
 
@@ -23,7 +23,7 @@ function setDislike(element) {
   // TODO dislike のステータスを付けるのを考えると、API アクセスする必要がある
   //      componentWillMount でやるか悩ましい
   ReactDOM.render(
-    <Dislike threadId={threadId} messageId={messageId} userId={share.userId}/>,
+    <DislikeButton threadId={threadId} messageId={messageId} userId={share.userId}/>,
     container[0]
   );
 

@@ -10,16 +10,8 @@ function getUserId() {
   return user_url.match(re)[1];
 }
 
-function setDislike(element) {
-  let actions = $(element);
-  let container = $('<li class="yj-message-list-item--action-list-item yj-message-action-list-item yj-dislike-list-item">');
-  actions.append(container);
-  // TODO threadId, messageId, userId を取り出す
-  let threadId = $(actions.parents('.yj-thread-list-item')[0]).data('thread-id');
-  let messageId = $(actions.parents('.yj-message-list-item')[0]).data('message-id');
-
-  console.log(`waitForElement load ${threadId} ${messageId}`);
-
+// FIXME 現在未使用
+function setSidebar() {
   // TODO sidebar は状態によっては無いことがある
   let sidebar = $('.yj-selector-right-sidebar');
   let sideContainer = $('<div class="yj-conversation--actions"><h2 class="yj-conversation--actions-header" role="presentation"><span role="heading" aria-level="2">Dislikes</span></h2>');
@@ -27,9 +19,19 @@ function setDislike(element) {
 
   let temp = $('<div role="complementary" id="commentSidebar" class="yj-thread-sidebar">');
   sidebar.append(temp);
+}
+
+function setDislike(element) {
+  let actions = $(element);
+  let container = $('<li class="yj-message-list-item--action-list-item yj-message-action-list-item yj-dislike-list-item">');
+  actions.append(container);
+
+  let threadId = $(actions.parents('.yj-thread-list-item')[0]).data('thread-id');
+  let messageId = $(actions.parents('.yj-message-list-item')[0]).data('message-id');
 
   let dislikeListContainer = $('<div>');
   actions.parent().append(dislikeListContainer);
+
   ReactDOM.render(
     <Dislike threadId={threadId} messageId={messageId} userId={share.userId}/>,
     dislikeListContainer[0]

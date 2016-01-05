@@ -1,15 +1,10 @@
 import React from "react";
 import ApiClient from './api_client';
-import share from './share'
 
 export default class DislikeButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {disliked: false};
-  }
-
-  componentDidMount() {
-    //ApiClient.fetchDislikes(this.props.threadId, this.props.messageId)
   }
 
   componentWillUnmount() {
@@ -27,17 +22,17 @@ export default class DislikeButton extends React.Component {
   }
 
   onClick() {
-    //if (!this.props.disliked) {
-    console.log(`dislike#onclick ${this.props.threadId} ${this.props.messageId}`);
-      ApiClient.dislike(this.props.threadId, this.props.messageId, share.userId).then((dislike) => {
+    if (this.props.dislikes.length == 0) {
+      console.log(`dislike#onclick ${this.props.threadId} ${this.props.messageId}`);
+      ApiClient.dislike(this.props.threadId, this.props.messageId, this.props.userId).then((dislike) => {
         console.log(`>>> ok ${dislike}`);
       });
     //} else {
     //  // TODO dislike を削除
-    //}
+    }
   }
 
   label() {
-    return this.props.dislike ? 'undislike' : 'dislike';
+    return (this.props.dislikes.length > 0) ? 'undislike' : 'dislike';
   }
 }

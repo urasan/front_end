@@ -1,8 +1,7 @@
 import React from "react";
 import ReactDOM from 'react-dom';
 import request from 'superagent';
-import DislikeButton from './dislike_button';
-import DislikeList from './dislike_list'
+import Dislike from './dislike';
 import share from './share'
 
 function getUserId() {
@@ -20,12 +19,6 @@ function setDislike(element) {
   let messageId = $(actions.parents('.yj-message-list-item')[0]).data('message-id');
 
   console.log(`waitForElement load ${threadId} ${messageId}`);
-  // TODO dislike のステータスを付けるのを考えると、API アクセスする必要がある
-  //      componentWillMount でやるか悩ましい
-  ReactDOM.render(
-    <DislikeButton threadId={threadId} messageId={messageId} userId={share.userId}/>,
-    container[0]
-  );
 
   // TODO sidebar は状態によっては無いことがある
   let sidebar = $('.yj-selector-right-sidebar');
@@ -38,7 +31,7 @@ function setDislike(element) {
   let dislikeListContainer = $('<div>');
   actions.parent().append(dislikeListContainer);
   ReactDOM.render(
-    <DislikeList threadId={threadId} messageId={messageId} />,
+    <Dislike threadId={threadId} messageId={messageId} userId={share.userId}/>,
     dislikeListContainer[0]
   );
 }
@@ -50,14 +43,14 @@ $(function() {
     const selector = '.yj-message-list-item--action-list.yj-actions';
 
     let observer = new MutationObserver(function(mutations) {
-      mutations.forEach(function (mutation) {
+      mutations.forEach(function(mutation) {
         for (var i = 0; i < mutation.addedNodes.length; i++) {
           var addedNode = mutation.addedNodes[i];
 
-          if (typeof addedNode.querySelector === "function") {
-            let node = addedNode.querySelector(selector);
-            if (node) {
-              setDislike(node);
+          if (typeof addedNode.querySelectorAll === "function") {
+            let nodes = addedNode.querySelectorAll(selector);
+            if (nodes) {
+              Array.from(nodes).forEach((node) => setDislike(node));
             }
           }
         }

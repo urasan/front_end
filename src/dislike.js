@@ -23,7 +23,7 @@ export default class Dislike extends React.Component {
   render() {
     return (
       <div>
-        <DislikeButton dislikes={this.state.dislikes} threadId={this.props.threadId} messageId={this.props.messageId} userId={share.userId}/>
+        <DislikeButton dislikes={this.state.dislikes} threadId={this.props.threadId} messageId={this.props.messageId} userId={this.props.userId}/>
         <DislikeList dislikes={this.state.dislikes}/>
       </div>
     )

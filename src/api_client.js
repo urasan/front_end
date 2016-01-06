@@ -33,7 +33,7 @@ class ApiClient {
           if (res.status === 404) {
             reject();
           } else {
-            resolve(JSON.parse(res.text));
+            resolve();
           }
         });
     });

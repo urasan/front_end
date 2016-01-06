@@ -23,6 +23,10 @@ function setSidebar() {
 
 function setDislike(element, userId) {
   let actions = $(element);
+
+  if (actions.data('setDislike'))
+    return;
+
   let container = $('<li class="yj-message-list-item--action-list-item yj-message-action-list-item yj-dislike-list-item">');
   actions.append(container);
 
@@ -36,6 +40,8 @@ function setDislike(element, userId) {
     <Dislike threadId={threadId} messageId={messageId} userId={userId}/>,
     dislikeListContainer[0]
   );
+
+  actions.data('setDislike', true)
 }
 
 $(function() {

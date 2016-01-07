@@ -4,7 +4,7 @@ import ApiClient from './api_client';
 export default class DislikeButton extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {disliked: false};
+    this.state = {disliked: props.dislikeUsers.includes(props.userId)};
   }
 
   componentWillUnmount() {
@@ -22,17 +22,14 @@ export default class DislikeButton extends React.Component {
   }
 
   onClick() {
-    if (this.props.dislikes.length == 0) {
-      console.log(`dislike#onclick ${this.props.threadId} ${this.props.messageId}`);
-      ApiClient.dislike(this.props.threadId, this.props.messageId, this.props.userId).then((dislike) => {
-        console.log(`>>> ok ${dislike}`);
-      });
-    //} else {
-    //  // TODO dislike を削除
+    if (this.state.disliked) {
+      this.props.onUndislikeSubmit();
+    } else {
+      this.props.onDislikeSubmit();
     }
   }
 
   label() {
-    return (this.props.dislikes.length > 0) ? 'undislike' : 'dislike';
+    return (this.state.disliked) ? 'undislike' : 'dislike';
   }
 }

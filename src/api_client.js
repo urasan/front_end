@@ -25,24 +25,17 @@ class ApiClient {
   }
 
   dislike(threadId, messageId, userId) {
-    return new Promise((resolve, reject) => {
-      request
-        .post(`${this._url}/threads/${threadId}/messages/${messageId}/dislikes/create`)
-        .send({ user_id: userId })
-        .end(function (err, res) {
-          if (res.status === 404) {
-            reject();
-          } else {
-            resolve();
-          }
-        });
-    });
+    return this._postToDislike('create', threadId, messageId, userId);
   }
 
   undislike(threadId, messageId, userId) {
+    return this._postToDislike('destroy', threadId, messageId, userId);
+  }
+
+  _postToDislike(action, threadId, messageId, userId) {
     return new Promise((resolve, reject) => {
       request
-        .post(`${this._url}/threads/${threadId}/messages/${messageId}/dislikes/destroy`)
+        .post(`${this._url}/threads/${threadId}/messages/${messageId}/dislikes/${action}`)
         .send({user_id: userId})
         .end(function (err, res) {
           if (res.status === 404) {

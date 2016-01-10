@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import request from 'superagent';
 import Dislike from './dislike';
 import share from './share'
-import FontAwesome from 'font-awesome-webpack';
 
 function getUserId() {
   let user_url = $("a[data-qaid='user_name_link']")[0].href;

@@ -8,6 +8,10 @@ export default class DislikeButton extends React.Component {
     this.state = {disliked: props.dislikeUsers.includes(props.userId)};
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({disliked: nextProps.dislikeUsers.includes(nextProps.userId)})
+  }
+
   componentWillUnmount() {
     console.log('>>>>>>> unmount!!');
   }

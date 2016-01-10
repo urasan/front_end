@@ -27,7 +27,9 @@ export default class Dislike extends React.Component {
   }
 
   handleUndislikeSubmit() {
-    // dislike の解除を実装
+    ApiClient.undislike(this.props.threadId, this.props.messageId, this.props.userId).then(() => {
+      this.setState({dislikeUsers: this.state.dislikeUsers.filter((element) => element != this.props.userId)});
+    });
   }
 
   render() {

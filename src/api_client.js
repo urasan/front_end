@@ -38,6 +38,21 @@ class ApiClient {
         });
     });
   }
+
+  undislike(threadId, messageId, userId) {
+    return new Promise((resolve, reject) => {
+      request
+        .post(`${this._url}/threads/${threadId}/messages/${messageId}/dislikes/destroy`)
+        .send({user_id: userId})
+        .end(function (err, res) {
+          if (res.status === 404) {
+            reject();
+          } else {
+            resolve();
+          }
+        });
+    });
+  }
 }
 
 export default new ApiClient()

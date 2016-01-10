@@ -27,6 +27,7 @@
         "js/wait_for_element.js",
         "dest/content_script/app.js"
       ],
+      "css" : ["dest/css/bundle.css"],
       "matches": [
         "https://www.yammer.com/*"
       ],

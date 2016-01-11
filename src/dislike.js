@@ -7,17 +7,17 @@ import share from './share'
 export default class Dislike extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {dislikeUsers: []};
+
+    this.handleUndislikeSubmit = this.handleUndislikeSubmit.bind(this);
+    this.handleDislikeSubmit = this.handleDislikeSubmit.bind(this);
   }
 
   componentDidMount() {
     ApiClient.fetchDislikes(this.props.threadId, this.props.messageId).then((dislikes) => {
       this.setState({dislikeUsers: dislikes.map((dislike) => dislike.user_id)});
     });
-  }
-
-  componentWillUnmount() {
-    console.log('>>>>>>> unmount!!');
   }
 
   handleDislikeSubmit() {
@@ -35,9 +35,19 @@ export default class Dislike extends React.Component {
   render() {
     return (
       <div>
-        <DislikeButton dislikeUsers={this.state.dislikeUsers} onUndislikeSubmit={this.handleUndislikeSubmit.bind(this)} onDislikeSubmit={this.handleDislikeSubmit.bind(this)} threadId={this.props.threadId} messageId={this.props.messageId} userId={this.props.userId}/>
-        <DislikeList dislikeUsers={this.state.dislikeUsers}/>
+        <DislikeButton
+          disliked={this.disliked(this.state.dislikeUsers, this.props.userId)}
+          onUndislikeSubmit={this.handleUndislikeSubmit}
+          onDislikeSubmit={this.handleDislikeSubmit}
+          threadId={this.props.threadId}
+          messageId={this.props.messageId}
+        />
+        <DislikeList dislikeUsers={this.state.dislikeUsers} />
       </div>
     )
+  }
+
+  disliked(dislikeUsers, userId) {
+    return dislikeUsers.includes(userId);
   }
 }

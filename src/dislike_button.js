@@ -3,19 +3,6 @@ import ApiClient from './api_client';
 import Icon from 'react-fa';
 
 export default class DislikeButton extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {disliked: props.dislikeUsers.includes(props.userId)};
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({disliked: nextProps.dislikeUsers.includes(nextProps.userId)})
-  }
-
-  componentWillUnmount() {
-    console.log('>>>>>>> unmount!!');
-  }
-
   render() {
     return (
       <a onClick={this.onClick.bind(this)} role="button" href="javascript://" title="like this message" className="yj-message-list-item--action-list-link">
@@ -27,7 +14,7 @@ export default class DislikeButton extends React.Component {
   }
 
   onClick() {
-    if (this.state.disliked) {
+    if (this.props.disliked) {
       this.props.onUndislikeSubmit();
     } else {
       this.props.onDislikeSubmit();
@@ -35,6 +22,6 @@ export default class DislikeButton extends React.Component {
   }
 
   label() {
-    return (this.state.disliked) ? 'undislike' : 'dislike';
+    return (this.props.disliked) ? 'undislike' : 'dislike';
   }
 }

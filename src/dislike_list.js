@@ -9,9 +9,7 @@ export default class DislikeList extends React.Component {
       return (
         <p className="yj-message-likes yj-liked-by yj-thread-starter-likes yj-message-list-item--likes">
           <span className="yj-likes-text yj-message-likes--text">
-            {this.props.dislikeUsers.map(function(userId, i) {
-              return <span className="yj-hovercard-link--name" key={i} dangerouslySetInnerHTML={{__html: userId}}></span>
-            })}
+            <span className="yj-hovercard-link--name" dangerouslySetInnerHTML={{__html: this.props.dislikeUsers.join(', ')}}></span>
           </span>
         </p>
       )

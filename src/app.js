@@ -5,9 +5,7 @@ import Dislike from './dislike';
 import share from './share'
 
 function getUserId() {
-  let user_url = $("a[data-qaid='user_name_link']")[0].href;
-  let re = /https:\/\/www.yammer.com\/.*\/users\/(.*)/;
-  return user_url.match(re)[1];
+  return $.get('https://www.yammer.com/api/v1/users/current.json');
 }
 
 // FIXME 現在未使用
@@ -68,8 +66,8 @@ function setDislikeWhenActionButtonAppear() {
 }
 
 $(function() {
-  waitForElement('.yj-nav-menu--user-info-item', 5000).then((_element) => {
-    share.userId = getUserId();
+  getUserId().done((data) => {
+    share.userId = data.name;
 
     setDislikeWhenActionButtonAppear();
   });

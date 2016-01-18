@@ -3,6 +3,7 @@ import ApiClient from './api_client';
 import DislikeButton from './dislike_button';
 import DislikeList from './dislike_list'
 import share from './share'
+import _ from 'lodash';
 
 export default class Dislike extends React.Component {
   static propTypes = {
@@ -16,8 +17,10 @@ export default class Dislike extends React.Component {
 
     this.state = {dislikeUsers: []};
 
-    this.handleUndislikeSubmit = this.handleUndislikeSubmit.bind(this);
-    this.handleDislikeSubmit = this.handleDislikeSubmit.bind(this);
+    _.bindAll(this, [
+      'handleUndislikeSubmit',
+      'handleDislikeSubmit'
+    ]);
   }
 
   componentDidMount() {

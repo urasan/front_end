@@ -16,6 +16,7 @@
     "file-loader": "^0.8.5",
     "less": "^2.5.3",
     "less-loader": "^2.2.2",
+    "lodash": "^4.0.0",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
     "react-fa": "^4.0.0",

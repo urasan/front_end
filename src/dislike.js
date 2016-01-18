@@ -42,7 +42,7 @@ export default class Dislike extends React.Component {
     return (
       <div>
         <DislikeButton
-          disliked={this.disliked(this.state.dislikeUsers, this.props.userId)}
+          disliked={this.isDisliked}
           onUndislikeSubmit={this.handleUndislikeSubmit}
           onDislikeSubmit={this.handleDislikeSubmit}
           threadId={this.props.threadId}
@@ -53,7 +53,7 @@ export default class Dislike extends React.Component {
     )
   }
 
-  disliked(dislikeUsers, userId) {
-    return dislikeUsers.includes(userId);
+  get isDisliked() {
+    return this.state.dislikeUsers.includes(this.props.userId);
   }
 }

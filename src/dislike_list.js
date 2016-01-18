@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import ApiClient from './api_client';
 
 export default class DislikeList extends React.Component {
+  static propTypes = {
+    dislikeUsers: PropTypes.array.isRequired
+  };
+
   render() {
     if (this.props.dislikeUsers.length == 0) {
       return <span>まだ dislike はナイヨ</span>

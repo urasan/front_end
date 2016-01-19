@@ -42,7 +42,7 @@ function setDislike(element, userId) {
   actions.data('setDislike', true)
 }
 
-function setDislikeWhenActionButtonAppear() {
+function setDislikeWhenActionButtonAppear(userId) {
   const selector = '.yj-message-list-item--action-list.yj-actions';
 
   let observer = new MutationObserver(function(mutations) {
@@ -53,7 +53,7 @@ function setDislikeWhenActionButtonAppear() {
         if (typeof addedNode.querySelectorAll === "function") {
           let nodes = addedNode.querySelectorAll(selector);
           if (nodes) {
-            Array.from(nodes).forEach((node) => setDislike(node, share.userId));
+            Array.from(nodes).forEach((node) => setDislike(node, userId));
           }
         }
       }
@@ -67,8 +67,6 @@ function setDislikeWhenActionButtonAppear() {
 
 $(function() {
   getUserId().done((data) => {
-    share.userId = data.name;
-
-    setDislikeWhenActionButtonAppear();
+    setDislikeWhenActionButtonAppear(data.name);
   });
 });

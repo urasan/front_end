@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from 'react-dom';
 import request from 'superagent';
 import Dislike from './dislike';
-import share from './share'
 
 function getUserId() {
   return $.get('https://www.yammer.com/api/v1/users/current.json');

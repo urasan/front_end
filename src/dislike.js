@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import ApiClient from './api_client';
 import DislikeButton from './dislike_button';
 import DislikeList from './dislike_list'
-import share from './share'
 import _ from 'lodash';
 
 export default class Dislike extends React.Component {

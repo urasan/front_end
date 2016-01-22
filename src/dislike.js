@@ -1,9 +1,9 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import ApiClient from './api_client';
 import DislikeButton from './dislike_button';
 import DislikeList from './dislike_list'
 
-export default class Dislike extends React.Component {
+export default class Dislike extends Component {
   static propTypes = {
     threadId: PropTypes.number.isRequired,
     messageId: PropTypes.number.isRequired,

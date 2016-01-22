@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import CommentItem from './comment_item';
 
-export default class CommentList extends React.Component {
+export default class CommentList extends Component {
   render() {
     console.log('>>>> inner comment_list');
     console.dir(this.props.comments);

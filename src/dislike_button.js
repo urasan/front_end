@@ -1,8 +1,8 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import ApiClient from './api_client';
 import Icon from 'react-fa';
 
-export default class DislikeButton extends React.Component {
+export default class DislikeButton extends Component {
   static propTypes = {
     disliked: PropTypes.bool.isRequired,
     onUndislikeSubmit: PropTypes.func.isRequired,

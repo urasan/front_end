@@ -1,0 +1,17 @@
+{
+  "preset": "airbnb",
+  "fileExtensions": [
+    ".js",
+    ".jsx"
+  ],
+  "excludeFiles": [
+    "dest/**",
+    "node_modules/**"
+  ],
+  "esprima": "babel-jscs",
+  "validateQuoteMarks": {
+    "mark": "'",
+    "escape": true,
+    "ignoreJSX": true
+  }
+}

@@ -8,6 +8,6 @@ export default class CommentItem extends Component {
       <li>
         <span>test</span>
       </li>
-    )
+    );
   }
 }

@@ -6,7 +6,7 @@ export default class DislikeButton extends Component {
   static propTypes = {
     disliked: PropTypes.bool.isRequired,
     onUndislikeSubmit: PropTypes.func.isRequired,
-    onDislikeSubmit: PropTypes.func.isRequired
+    onDislikeSubmit: PropTypes.func.isRequired,
   };
 
   render() {
@@ -16,7 +16,7 @@ export default class DislikeButton extends Component {
         <span className="yj-message-list-item--action-list-label" aria-hidden="true">{this.label}</span>
         <span className="yj-message-list-item--action-list-acc yj-acc-hidden"> dislike this message</span>
       </a>
-    )
+    );
   }
 
   onClick() {

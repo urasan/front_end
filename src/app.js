@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import ReactDOM from 'react-dom';
 import request from 'superagent';
 import Dislike from './dislike';
@@ -38,7 +38,7 @@ function setDislike(element, userId) {
     dislikeListContainer[0]
   );
 
-  actions.data('setDislike', true)
+  actions.data('setDislike', true);
 }
 
 function setDislikeWhenActionButtonAppear(userId) {
@@ -49,7 +49,7 @@ function setDislikeWhenActionButtonAppear(userId) {
       for (var i = 0; i < mutation.addedNodes.length; i++) {
         var addedNode = mutation.addedNodes[i];
 
-        if (typeof addedNode.querySelectorAll === "function") {
+        if (typeof addedNode.querySelectorAll === 'function') {
           let nodes = addedNode.querySelectorAll(selector);
           if (nodes) {
             Array.from(nodes).forEach((node) => setDislike(node, userId));
@@ -60,7 +60,7 @@ function setDislikeWhenActionButtonAppear(userId) {
   });
 
   observer.observe(document.body, {
-    childList: true, subtree: true
+    childList: true, subtree: true,
   });
 }
 

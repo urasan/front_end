@@ -5,7 +5,7 @@ class ApiClient {
     chrome.storage.sync.get(
       'apiUrl',
       (item) => {
-        this._url = item.apiUrl
+        this._url = item.apiUrl;
       }
     );
   }
@@ -14,7 +14,7 @@ class ApiClient {
     return new Promise((resolve, reject) => {
       request
         .get(`${this._url}/threads/${threadId}/messages/${messageId}/dislikes`)
-        .end(function (err, res) {
+        .end(function(err, res) {
           if (res.status === 404) {
             reject();
           } else {
@@ -36,8 +36,8 @@ class ApiClient {
     return new Promise((resolve, reject) => {
       request
         .post(`${this._url}/threads/${threadId}/messages/${messageId}/dislikes/${action}`)
-        .send({user_id: userId})
-        .end(function (err, res) {
+        .send({ user_id: userId })
+        .end(function(err, res) {
           if (res.status === 404) {
             reject();
           } else {
@@ -48,4 +48,4 @@ class ApiClient {
   }
 }
 
-export default new ApiClient()
+export default new ApiClient();

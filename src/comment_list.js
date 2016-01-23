@@ -13,6 +13,6 @@ export default class CommentList extends Component {
           return <CommentItem comment={comment} key={i} />;
         })}
       </ul>
-    )
+    );
   }
 }

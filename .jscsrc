@@ -6,7 +6,8 @@
   ],
   "excludeFiles": [
     "dest/**",
-    "node_modules/**"
+    "node_modules/**",
+    "js/**"
   ],
   "esprima": "babel-jscs",
   "validateQuoteMarks": {
